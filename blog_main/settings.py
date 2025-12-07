@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blogs',
+    'assignments',
+    'crispy_forms',
+    'crispy_bootstrap4'
 ]
 
 MIDDLEWARE = [
@@ -61,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'blogs.context_processors.get_category',
+                'blogs.context_processors.get_sociallinks'
             ],
         },
     },
@@ -117,3 +123,13 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT= BASE_DIR / 'static'
 STATICFILES_DIRS= ['blog_main/static']
+
+# Media Configuration
+
+MEDIA_URL= '/media/'
+MEDIA_ROOT= BASE_DIR / 'media'
+
+# Crispy form configuration
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = ["bootstrap4"]
