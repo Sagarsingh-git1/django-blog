@@ -27,7 +27,6 @@ def blogs(request,slug):
     return render(request,'blogs.html',context)
 
 def search(request):
-    # if request.method=='GET':
     keyword=request.GET.get('keyword')
     blogs=Blog.objects.filter(Q(title__icontains=keyword)| Q(short_description__icontains=keyword)| Q(blog_body__icontains=keyword),status='Published')
     context={

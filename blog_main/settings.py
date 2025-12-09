@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'blogs',
     'assignments',
     'crispy_forms',
-    'crispy_bootstrap4'
+    'crispy_bootstrap4',
+    'dashboards'
 ]
 
 MIDDLEWARE = [
@@ -66,7 +67,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'blogs.context_processors.get_category',
-                'blogs.context_processors.get_sociallinks'
+                'blogs.context_processors.get_sociallinks',
+                'blogs.context_processors.get_blogs',
             ],
         },
     },
