@@ -17,13 +17,13 @@
       <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
           <div class="col-4 pt-1">
-            <a class="blog-header-logo text-dark" href="/">Django Blog</a>
+            <a class="blog-header-logo text-dark" href="{% url 'home' %}">Django Blog</a>
           </div>
           <div class="col-4">
             <form action="{% url 'search' %}" method="GET">
             <div class="input-group">
                         <input  class="form-control" type="text" name="keyword" value="{{keyword}}" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                        <button type="submit" class="btn btn-warning" id="button-search" type="button"> Go!</button>
+                        <button type="submit" class="btn btn-warning" id="button-search"> Go!</button>
                     </div>
                     </form>
           </div>
@@ -32,7 +32,11 @@
             <a class="btn btn-sm btn-warning" href="{% url 'login' %}">Login</a> &nbsp;
             <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">Register</a>
             {% else %}
+            {% if perms.auth.add_blog %}
             <a class="btn btn-sm btn-secondary" href="{% url 'dashboard' %}">Dashboard</a>
+            {% else %}
+            <span>Logged in as: <b>{{user}}</b></span>
+            {% endif %}
             &emsp;
             <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-secondary">LogOut</a>
             {% endif %}
@@ -58,7 +62,7 @@
                <div class="p-3">
           <h4 class="font-italic">Follow Us</h4>
           <ol class="list-unstyled">
-            {%for i in sociallinks%}
+            {% for i in sociallinks %}
             <li><a href="{{i.links}}" target='_blank'>{{i.platform}}</a></li>
             {% endfor %}
           </ol>
@@ -72,7 +76,8 @@
 
 </div>
 <footer class="blog-footer">
-  <p>Django blog built with � by <a href="#">Sagar Singh</a></p>
+  <p>Django blog built with <i class="fa fa-heart text-danger"></i>
+ by Sagar Singh</a></p>
 </footer>
 </body>
 </html>

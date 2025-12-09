@@ -4,6 +4,7 @@ from assignments.models import About
 from .forms import RegistrationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
+from django.contrib.auth.models import Group
 
 def home(request):
     featured_posts=Blog.objects.filter(is_featured=True,status='Published').order_by('updated_at')
@@ -12,8 +13,6 @@ def home(request):
         about=About.objects.get()
     except:
         about=None
-
-
 
     context={
         'featured_posts':featured_posts,
@@ -28,8 +27,11 @@ def register(request):
     if request.method=='POST':
         form=RegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('register')
+            user=form.save()
+
+            viewer_group=Group.objects.get(name='viewer')
+            user.groups.add(viewer_group)
+            return redirect('login')
     else:
         form=RegistrationForm()
 
@@ -50,6 +52,8 @@ def login(request):
             user=auth.authenticate(username=username,password=password)
             if user is not None:
                 auth.login(request,user)
+                if user.groups.filter(name='viewer').exists():    
+                    return redirect('home')
                 return redirect('dashboard')
     else:
         form=AuthenticationForm()
