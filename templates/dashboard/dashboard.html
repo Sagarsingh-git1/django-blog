@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="row">
-    {% if perms.auth.add_blog %}
+    {% if perms.blogs.add_blog %}
     {% include 'dashboard/sidebar.html' %}
     <div class="col-md-9">
         <span>Logged in as: <b>{{user}}</b></span>

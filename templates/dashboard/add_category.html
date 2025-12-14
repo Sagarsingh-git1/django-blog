@@ -5,7 +5,9 @@
 {% load crispy_forms_tags %}
 
 <div class="row">
+     {% if perms.blogs.add_category %}
       {% include 'dashboard/sidebar.html' %}
+
 <div class="col-md-9">
   
         <h2 class="text">Add New Category</h2>
@@ -23,6 +25,9 @@
        
        
     </div>
+    {% else %}
+     <h4>Why are you wasting time? I said earlier also you dont have permission.</h4>
+    {% endif %}
 </div>
 
 

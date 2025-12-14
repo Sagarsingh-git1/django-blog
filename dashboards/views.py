@@ -67,7 +67,7 @@ def add_posts(request):
         if form.is_valid():
             post=form.save(commit=False) # Temporarily saving the form
             post.author=request.user
-            post.save() #then saving for generating pk
+            post.save() #then saving for generating pk/id
             title=form.cleaned_data['title']
             post.slug=slugify(title)+'-'+str(post.id) #making the slug unique by suffixing post.id(unique) 
             post.save()
