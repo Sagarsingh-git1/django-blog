@@ -52,7 +52,6 @@ password: Sunita@123
 
 🔗 https://sagarsingh.pythonanywhere.com/
 
-(Replace with your actual deployed app link)
 
 🛠 Tech Stack
 
